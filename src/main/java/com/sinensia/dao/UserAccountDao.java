@@ -130,6 +130,26 @@ private Connection connect;
 
 	@Override
 	public int remove(int id) throws SQLException {
-		return 0;
+		PreparedStatement preparedStatement = null;
+		ResultSet rs = null;
+		
+		try {
+			connect = super.getconnection();
+			preparedStatement = connect.prepareStatement("DELETE FROM useraccount WHERE userAccountId = ?");
+			preparedStatement.setInt(1, id);
+			preparedStatement.executeUpdate();
+		} catch(SQLException e) {
+			e.printStackTrace();
+			throw e;
+		} finally {
+			if(preparedStatement != null) {
+				preparedStatement.close();
+			}
+			if(connect != null) {
+				connect.close();
+			}
+		}
+		
+		return id;
 	}
 }

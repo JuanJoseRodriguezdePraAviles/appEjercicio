@@ -31,6 +31,6 @@ public class UserAccountService implements IDao<UserAccount>{
 
 	@Override
 	public int remove(int id) throws SQLException {
-		return 0;
+		return userAccountDao.remove(id);
 	}
 }
