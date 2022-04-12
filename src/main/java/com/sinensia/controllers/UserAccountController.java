@@ -18,8 +18,6 @@ import javax.servlet.http.HttpServletResponse;
 import com.sinensia.model.UserAccount;
 import com.sinensia.services.UserAccountService;
 
-import java.util.Properties;
-/*
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.PasswordAuthentication;
@@ -27,7 +25,7 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-*/
+
 @WebServlet("/userAccount")
 public class UserAccountController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -84,7 +82,7 @@ public class UserAccountController extends HttpServlet {
 			}
 			//Send email
 			String destinatario = userAccount.getEmail();
-			String origen = "appejercicio@gmail.com";
+			String origen = "jjpratest@gmail.com";
 			String host = "smtp.gmail.com";
 			
 			Properties properties = System.getProperties();
@@ -92,18 +90,46 @@ public class UserAccountController extends HttpServlet {
 	        properties.put("mail.smtp.port", "465");
 	        properties.put("mail.smtp.ssl.enable", "true");
 	        properties.put("mail.smtp.auth", "true");
-	        /*
+	        
 	        // Get the Session object.// and pass username and password
 	        Session session = Session.getInstance(properties, new javax.mail.Authenticator() {
 
 	            protected PasswordAuthentication getPasswordAuthentication() {
 
-	                return new PasswordAuthentication("fromaddress@gmail.com", "*******");
+	                return new PasswordAuthentication("jjpratest@gmail.com", ",:~Jnh8/?wZt<Ck[");
 
 	            }
+	            
 
 	        });
-			*/
+			
+	     // Used to debug SMTP issues
+	        session.setDebug(true);
+
+	        try {
+	            // Create a default MimeMessage object.
+	            MimeMessage message = new MimeMessage(session);
+
+	            // Set From: header field of the header.
+	            message.setFrom(new InternetAddress(origen));
+
+	            // Set To: header field of the header.
+	            message.addRecipient(Message.RecipientType.TO, new InternetAddress(destinatario));
+
+	            // Set Subject: header field
+	            message.setSubject("Creación cuenta");
+
+	            // Now set the actual message
+	            message.setText("La cuenta de usuario: "+userAccount.getNombre()+ " " +userAccount.getApellidos()+" ha sido creada con éxito");
+
+	            System.out.println("enviando...");
+	            // Send message
+	            Transport.send(message);
+	            System.out.println("Enviado mensaje con éxito...");
+	        } catch (MessagingException mex) {
+	            mex.printStackTrace();
+	        }
+	        
 			response.sendRedirect("index.jsp");
 		}
 	}

@@ -7,6 +7,7 @@
 <%@ page import="com.sinensia.model.UserAccount"%>
 <%@ page import="com.sinensia.controllers.UserAccountController"%>
 <%@page import="com.sinensia.services.UserAccountService"%>
+
 <head>
 <title>AppEjercicio</title>
 <meta charset="utf-8">
@@ -15,6 +16,7 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
 	rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+<link href="css/ResumenIndexCSS.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 	<%@ include file="cabecera.jsp"%>
@@ -39,7 +41,7 @@
 						<td scope="row"><%= userAccount.getNombre()%></td>
 						<td><%=userAccount.getApellidos()%></td>
 						<td><%=userAccount.getFechaNacimiento()%></td>
-						<td><%= userAccount.getEmail() %></td>
+						<td><%=userAccount.getEmail() %></td>
 					</tr>
 				<%} %>
 			</tbody>
@@ -47,7 +49,7 @@
 	</div>
 	<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 	<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
-	<div class="mx-auto bg-primary" style="width: 10%">
+	<div class="mx-auto bg-primary boton" style="width: 10%">
 		<a class="btn fw-bold text-white" href="nuevoUserAccount.jsp" role="button">Nuevo usuario</a>
 	</div>
 	<%@ include file="pieDePagina.jsp"%>

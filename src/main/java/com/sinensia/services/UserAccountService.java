@@ -4,7 +4,6 @@ import java.sql.SQLException;
 import java.util.List;
 
 import com.sinensia.contracts.IDao;
-import com.sinensia.dao.TramiteDao;
 import com.sinensia.dao.UserAccountDao;
 import com.sinensia.model.UserAccount;
 
