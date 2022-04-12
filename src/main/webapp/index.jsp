@@ -42,15 +42,17 @@
 						<td><%=userAccount.getApellidos()%></td>
 						<td><%=userAccount.getFechaNacimiento()%></td>
 						<td><%=userAccount.getEmail() %></td>
+						<td><a href="userAccount?action=eliminar&id=<%=userAccount.getUserAccountId() %>">Eliminar</a></td>
 					</tr>
 				<%} %>
 			</tbody>
 		</table>
 	</div>
-	<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-	<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
 	<div class="mx-auto bg-primary boton" style="width: 10%">
 		<a class="btn fw-bold text-white" href="nuevoUserAccount.jsp" role="button">Nuevo usuario</a>
 	</div>
 	<%@ include file="pieDePagina.jsp"%>
+	<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+	<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+	
 </body>

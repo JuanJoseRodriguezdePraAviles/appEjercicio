@@ -43,7 +43,19 @@ public class UserAccountController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		String action = request.getParameter("action");
+		System.out.println(action);
+		try {
+			switch (action) {
+			case "eliminar":
+				eliminar(request, response);
+				break;
+			default:
+				break;
+			}			
+		} catch (SQLException e) {
+			e.getStackTrace();
+		}
 	}
 
 	/**
@@ -132,5 +144,13 @@ public class UserAccountController extends HttpServlet {
 	        
 			response.sendRedirect("index.jsp");
 		}
+	}
+	
+	private void eliminar(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException{
+		UserAccountService userAccountService = new UserAccountService();
+		UserAccount userAccount = userAccountService.getById(Integer.parseInt(request.getParameter("id")));
+		userAccountService.remove(userAccount.getUserAccountId());
+		
+		response.sendRedirect("index.jsp");
 	}
 }

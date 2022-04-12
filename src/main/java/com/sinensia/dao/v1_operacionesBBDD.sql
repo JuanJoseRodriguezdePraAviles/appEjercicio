@@ -19,3 +19,4 @@ CREATE TABLE IF NOT EXISTS `userAccount` (
 `fechaRegistro` DATE NOT NULL,
 PRIMARY KEY (`userAccountId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1;
+DELETE FROM useraccount WHERE userAccountId > 0;
